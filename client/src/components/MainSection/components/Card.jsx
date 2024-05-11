@@ -2,44 +2,45 @@ import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { axiosDelete } from "../../../axiosServices";
 
-const Card = ({ empData, handleEdit, handleReRender}) => {
-  const { firstname, lastname, job, email } = empData
-  const [dropDown, setDropdown] = useState(false)
+const Card = ({ empData, handleEdit, handleReRender }) => {
+  const { firstname, lastname, job, email } = empData;
+  const [dropDown, setDropdown] = useState(false);
 
-  const handleDelete = async(id) =>{
+  const handleDelete = async (id) => {
     //console.log(id)
-    try{
-      const res = await axiosDelete(`/employee/${id}`)
-      console.log(res)
-      handleReRender()
+    try {
+      const res = await axiosDelete(`/employee/${id}`);
+      console.log(res);
+      handleReRender();
+    } catch (err) {
+      console.log(err);
     }
-    catch(err){
-      console.log(err)
-    }
-    
-  }
+  };
   return (
     <div className="card-component">
       <div className="card-inner">
         <div className="dropdownContainer">
-          <BsThreeDotsVertical size={20} onClick={() => setDropdown(!dropDown)} />
-          {
-            dropDown && <ul className="dropdown"
-              onMouseLeave={() => setDropdown(false)}
-            >
-              <li onClick={()=>handleEdit(empData._id)}>Edit</li>
-              <li onClick={()=>handleDelete(empData._id)}>Delete</li>
+          <BsThreeDotsVertical
+            size={20}
+            onClick={() => setDropdown(!dropDown)}
+          />
+          {dropDown && (
+            <ul className="dropdown" onMouseLeave={() => setDropdown(false)}>
+              <li onClick={() => handleEdit(empData._id)}>Edit</li>
+              <li onClick={() => handleDelete(empData._id)}>Delete</li>
             </ul>
-          }
+          )}
         </div>
         <div className="profileImage">
           <img
-          src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
+            src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
             alt={firstname}
           />
         </div>
         <div className="emp-detail">
-          <h3>{firstname} {lastname}</h3>
+          <h3>
+            {firstname} {lastname}
+          </h3>
           <p>{email}</p>
         </div>
       </div>

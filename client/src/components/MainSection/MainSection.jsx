@@ -8,58 +8,53 @@ import { axiosGet } from "../../axiosServices";
 import EditDetailsModal from "../ModelPopup/EditDetailsModal";
 
 const MainSection = ({ setEmployeeId }) => {
-  const [showModal, setShowModal] = useState(false)
-  const [editModal, setEditModal] = useState(false)
-  const [employees, setEmployees] = useState([])
-  const [empById, setEmpById] = useState([])
-  const [reRender, setReRender] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
+  const [employees, setEmployees] = useState([]);
+  const [empById, setEmpById] = useState([]);
+  const [reRender, setReRender] = useState(false);
 
   const getAllEmployee = async () => {
     try {
-      const res = await axiosGet('/employee')
-      setEmployees(res.data)
+      const res = await axiosGet("/employee");
+      setEmployees(res.data);
+    } catch (err) {
+      console.log(err);
     }
-    catch (err) {
-      console.log(err)
-    }
-  }
+  };
   const getEmployeeById = async (id) => {
     try {
-      const res = await axiosGet(`/employee/${id}`)
-      setEmpById(res.data)
+      const res = await axiosGet(`/employee/${id}`);
+      setEmpById(res.data);
+    } catch (err) {
+      console.log(err);
     }
-    catch (err) {
-      console.log(err)
-    }
-  }
+  };
   const handleSearch = async (e) => {
     try {
-      const res = await axiosGet(`/searchemployee/${e.target.value}`)
-      setEmployees(res.data)
+      const res = await axiosGet(`/searchemployee/${e.target.value}`);
+      setEmployees(res.data);
+    } catch (err) {
+      console.log(err.message);
     }
-    catch (err) {
-      console.log(err.message)
-    }
-  }
+  };
   const handleEdit = async (id) => {
-    getEmployeeById(id)
-    setEditModal(true)
-  }
+    getEmployeeById(id);
+    setEditModal(true);
+  };
   const handleReRender = () => {
-    setReRender(true)
-  }
+    setReRender(true);
+  };
 
   useEffect(() => {
-    getAllEmployee()
-  }, [showModal, editModal, reRender])
+    getAllEmployee();
+  }, [showModal, editModal, reRender]);
   return (
     <>
-      {
-        showModal && <ModelPopup setShowModal={setShowModal} />
-      }
-      {
-        editModal && <EditDetailsModal setEditModal={setEditModal} empById={empById} />
-      }
+      {showModal && <ModelPopup setShowModal={setShowModal} />}
+      {editModal && (
+        <EditDetailsModal setEditModal={setEditModal} empById={empById} />
+      )}
 
       <main className="mainContainer">
         <div className="mainWrapper">
@@ -75,21 +70,24 @@ const MainSection = ({ setEmployeeId }) => {
               />
               <BiSearch size={20} />
             </div>
-            <button className="add-btn"
-              onClick={() => setShowModal(true)}
-            ><IoMdAdd size="20" color="#fffff" />Add Employee</button>
+            <button className="add-btn" onClick={() => setShowModal(true)}>
+              <IoMdAdd size="20" color="#fffff" />
+              Add Employee
+            </button>
           </div>
           <div className="employees">
-            {
-              employees && employees.map((emp) => {
-                return <div key={emp._id} onClick={() => setEmployeeId(emp._id)}>
-                  <Card
-                    empData={emp}
-                    handleEdit={handleEdit}
-                    handleReRender={handleReRender} />
-                </div>
-              })
-            }
+            {employees &&
+              employees.map((emp) => {
+                return (
+                  <div key={emp._id} onClick={() => setEmployeeId(emp._id)}>
+                    <Card
+                      empData={emp}
+                      handleEdit={handleEdit}
+                      handleReRender={handleReRender}
+                    />
+                  </div>
+                );
+              })}
           </div>
         </div>
       </main>
