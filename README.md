@@ -6,13 +6,10 @@ This repo contains two folders one for the server and another for the Client. To
 The client folder contains the React app. Type `npm install` to install the dependencies and then type `npm start` to start the frontend.
 
 # Dependecies and Tools
-TypeScript
-Express
-Sequelize-TypeScript
-Postgres
-Bcrypt
-Jsonwebtoken
-Dotenv
+ - REACT JS
+-  NODE JS
+-  EXPRESS
+-  MONGO DB
 
 # Photos
 
