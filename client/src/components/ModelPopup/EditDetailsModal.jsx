@@ -4,7 +4,7 @@ import "./ModelPopup.css";
 import { axiosPut } from "../../axiosServices";
 
 const EditDetailsModal = ({ empById, setEditModal }) => {
-    const { firstname, lastname, email, phone, job, dateofjoining, image } = empById
+    const { firstname, lastname, email, phone, job, dateofjoining } = empById
     //const date = new Date(dateofjoining)
     const [loading, setLoading] = useState(false)
     const handleEdit = async (values) => {
@@ -28,7 +28,6 @@ const EditDetailsModal = ({ empById, setEditModal }) => {
             phone,
             job,
             dateofjoining,
-            image,
         },
         onSubmit: values => {
             handleEdit(values)
@@ -68,15 +67,6 @@ const EditDetailsModal = ({ empById, setEditModal }) => {
                                 />
                             </div>
                         </div>
-                        <div className="input-box">
-                                <label htmlFor="">Image</label>
-                                <input type="text" name="lastname"
-                                    required
-                                    defaultValue={image}
-                                    onChange={formik.handleChange}
-                                    values={formik.values.image}
-                                />
-                            </div>
 
                         <div className="input-container">
                             <div className="input-box">
@@ -108,7 +98,7 @@ const EditDetailsModal = ({ empById, setEditModal }) => {
                             />
                         </div>
                         <div className="input-box">
-                            <label htmlFor="">Date of Joining</label>
+                            <label htmlFor="">Date of Birth</label>
                             <input type="date" name="dateofjoining"
                                 required
                                 defaultValue={dateofjoining}

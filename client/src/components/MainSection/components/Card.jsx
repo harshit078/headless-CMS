@@ -3,7 +3,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { axiosDelete } from "../../../axiosServices";
 
 const Card = ({ empData, handleEdit, handleReRender}) => {
-  const { firstname, lastname, job, email, image } = empData
+  const { firstname, lastname, job, email } = empData
   const [dropDown, setDropdown] = useState(false)
 
   const handleDelete = async(id) =>{

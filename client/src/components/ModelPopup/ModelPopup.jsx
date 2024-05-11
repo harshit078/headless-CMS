@@ -37,6 +37,7 @@ const ModelPopup = ({ setShowModal }) => {
     <div className="modalContainer">
 <form action="" onSubmit={formik.handleSubmit}>
       <div className="modalBox">
+      <button className="close-btn" onClick={() => setShowModal(false)}>Close</button>
         <div className="modalHeader">
           <h2>New Employee Details</h2>
         </div>
@@ -91,7 +92,7 @@ const ModelPopup = ({ setShowModal }) => {
               />
             </div>
             <div className="input-box">
-              <label htmlFor="">Date of Joining</label>
+              <label htmlFor="">Date of Birth</label>
               <input type="date" name="dateofjoining"
                 required
                 onChange={formik.handleChange}
